@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
-import ProjectItem from "./Project/ProjectItem";
+
 
 //Components Import
-
+import ProjectItem from "./Project/ProjectItem";
+import CreateProjectButton from "./Project/CreateProjectButton";
 
 class Dashboard extends Component {
 	render() {
 		return (
 			<div>
 				<div className="uk-container">
+					<br/>
+					<CreateProjectButton />
+					<br/>
 					<div className="uk-text-center" uk-grid="true">
 						<div className="uk-width-1-4">
 							<div className="uk-card uk-card-default uk-card-body">
