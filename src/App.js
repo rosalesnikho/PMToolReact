@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
 //UI Kit Styles
@@ -10,16 +10,18 @@ import 'uikit/dist/css/uikit.css'
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
+import AddProject from "./components/Project/AddProject";
 
 function App() {
   return (
-      <Route>
+      <Router>
           <div className="App">
               <Header />
-              <Dashboard />
+              <Route exact path="/dashboard" component={Dashboard}/>
+              <Route exact path="/addProject" component={AddProject}/>
               <Footer />
           </div>
-      </Route>
+      </Router>
   );
 }
 
