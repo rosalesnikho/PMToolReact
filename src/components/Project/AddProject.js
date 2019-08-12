@@ -1,4 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import { connect } from "react-redux"
+import PropTypes from "prop-types";
+
+
+//Comps Import
+import { createProject } from "../../actions/projectActions";
 
 class AddProject extends Component {
 
@@ -33,6 +39,10 @@ class AddProject extends Component {
 			start_date: this.state.start_date,
 			end_date: this.state.end_date
 		};
+
+		this.props.createProject(newProject, this.props.history);
+
+		console.log(newProject)
 	}
 
 	render() {
@@ -45,6 +55,7 @@ class AddProject extends Component {
 								<legend className="uk-legend">Create A New Project</legend>
 
 								<div className="uk-margin">
+									Project Title
 									<input
 										className="uk-input"
 										type="text"
@@ -55,6 +66,7 @@ class AddProject extends Component {
 									/>
 								</div>
 								<div className="uk-margin">
+									Project ID
 									<input
 										className="uk-input"
 										type="text"
@@ -66,13 +78,7 @@ class AddProject extends Component {
 								</div>
 
 								<div className="uk-margin">
-									<select className="uk-select">
-										<option>Option 01</option>
-										<option>Option 02</option>
-									</select>
-								</div>
-
-								<div className="uk-margin">
+									Description
 									<textarea
 										className="uk-textarea"
 										rows="5"
@@ -102,7 +108,6 @@ class AddProject extends Component {
 										name="end_date"
 										value={this.state.end_date}
 										onChange={this.onChange}
-
 									/>
 								</div>
 
@@ -113,7 +118,7 @@ class AddProject extends Component {
 						</form>
 					</div>
 					<div className="uk-width-1-2">
-
+					{/*	 Right side - Add Instructional Content Here */}
 					</div>
 				</div>
 			</div>
@@ -121,4 +126,13 @@ class AddProject extends Component {
 	}
 }
 
-export default AddProject;
+// Create Project Function is a required prop type
+AddProject.propTypes =  {
+	createProject : PropTypes.func.isRequired
+};
+
+// Export AddProject class
+export default connect(
+	null,
+	{ createProject }
+	)(AddProject);
