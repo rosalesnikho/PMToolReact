@@ -1,9 +1,11 @@
 import React from "react";
-import "./App.css";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store';
 
-//UI Kit Styles
+//UI Kit Styles and other styles
 import 'uikit/dist/css/uikit.css'
+import "./App.css";
 
 
 //Import Components
@@ -13,16 +15,20 @@ import Footer from "./components/Layout/Footer";
 import AddProject from "./components/Project/AddProject";
 
 function App() {
-  return (
-      <Router>
-          <div className="App">
-              <Header />
-              <Route exact path="/dashboard" component={Dashboard}/>
-              <Route exact path="/addProject" component={AddProject}/>
-              <Footer />
-          </div>
-      </Router>
-  );
+	return (
+
+		<Provider store={store}>
+			<Router>
+				<div className="App">
+					<Header />
+					<Route exact path="/dashboard" component={Dashboard}/>
+					<Route exact path="/addProject" component={AddProject}/>
+					<Footer />
+				</div>
+			</Router>
+		</Provider>
+
+	);
 }
 
 export default App;
