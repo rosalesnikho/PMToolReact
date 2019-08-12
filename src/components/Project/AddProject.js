@@ -1,4 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux"
+
+//Comps Import
+import { createProject } from "../../actions/projectActions";
 
 class AddProject extends Component {
 
@@ -33,6 +38,8 @@ class AddProject extends Component {
 			start_date: this.state.start_date,
 			end_date: this.state.end_date
 		};
+
+		this.props.createProject(newProject, this.props.history)
 	}
 
 	render() {
@@ -102,7 +109,6 @@ class AddProject extends Component {
 										name="end_date"
 										value={this.state.end_date}
 										onChange={this.onChange}
-
 									/>
 								</div>
 
@@ -113,7 +119,7 @@ class AddProject extends Component {
 						</form>
 					</div>
 					<div className="uk-width-1-2">
-
+					{/*	 Right side - Add Instructional Content Here */}
 					</div>
 				</div>
 			</div>
@@ -121,4 +127,13 @@ class AddProject extends Component {
 	}
 }
 
-export default AddProject;
+// Create Project Function is a required prop type
+AddProject.propTypes =  {
+	createProject : PropTypes.func.isRequired
+};
+
+// Export AddProject class
+export default connect(
+	null,
+	{ createProject })
+(AddProject);
