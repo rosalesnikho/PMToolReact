@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from "react-redux"
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 
 //Comps Import
@@ -8,7 +9,7 @@ import { createProject } from "../../actions/projectActions";
 
 class AddProject extends Component {
 
-	//Comp State
+	//Initial Comp State
 	constructor() {
 		super();
 		this.state = {
@@ -16,11 +17,22 @@ class AddProject extends Component {
 			projectIdentifier: "",
 			description: "",
 			start_date: "",
-			end_date: ""
+			end_date: "",
+			errors: {}
 		};
 
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	// Life Cycle Hook
+	// Receive errors from state in case errors are made
+	componentWillReceiveProps(nextProps, nextContext) {
+		if(nextProps.errors) {
+			this.setState(
+				{errors : nextProps.errors}
+				)
+		}
 	}
 
 	// Allows input fields to be used again, after we set the state from the constructor
@@ -46,6 +58,11 @@ class AddProject extends Component {
 	}
 
 	render() {
+
+		const { errors } = this.state;
+		console.log(errors.projectName);
+
+
 		return (
 			<div className="uk-container">
 				<div className="uk-grid">
@@ -55,38 +72,42 @@ class AddProject extends Component {
 								<legend className="uk-legend">Create A New Project</legend>
 
 								<div className="uk-margin">
-									Project Title
+									Project Name
 									<input
-										className="uk-input"
+										className={classnames("uk-input", {"uk-form-danger" : errors.projectName})}
 										type="text"
 										name="projectName"
 										placeholder="Project Name"
 										value={this.state.projectName}
 										onChange={this.onChange}
 									/>
+									<span className="uk-text-danger uk-text-small">{errors.projectName}</span>
 								</div>
+
 								<div className="uk-margin">
 									Project ID
 									<input
-										className="uk-input"
+										className={classnames("uk-input", {"uk-form-danger" : errors.projectIdentifier})}
 										type="text"
 										name="projectIdentifier"
-										placeholder="Unique Project ID"
+										placeholder="Unique Project ID and more than 4 characters"
 										value={this.state.projectIdentifier}
 										onChange={this.onChange}
 									/>
+									<span className="uk-text-danger uk-text-small">{errors.projectIdentifier}</span>
 								</div>
 
 								<div className="uk-margin">
 									Description
 									<textarea
-										className="uk-textarea"
+										className={classnames("uk-textarea", {"uk-form-danger" : errors.description})}
 										rows="5"
 										name="description"
 										placeholder="Enter Project Details"
 										value={this.state.description}
 										onChange={this.onChange}
 									/>
+									<span className="uk-text-danger uk-text-small">{errors.description}</span>
 								</div>
 
 								<div className="uk-margin">
@@ -127,12 +148,20 @@ class AddProject extends Component {
 }
 
 // Create Project Function is a required prop type
+//
 AddProject.propTypes =  {
-	createProject : PropTypes.func.isRequired
+	createProject : PropTypes.func.isRequired,
+	errors: PropTypes.object.isRequired
 };
+
+// Map error state to props by grabbing it from Redux State
+// Pass errors as an Object and pass it to the view as new props
+const mapStateToProp  =  state => ({
+	errors: state.errors
+});
 
 // Export AddProject class
 export default connect(
-	null,
+	mapStateToProp,
 	{ createProject }
 	)(AddProject);
