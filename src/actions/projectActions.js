@@ -2,14 +2,13 @@ import axios from "axios";
 import {GET_ERRORS} from "./type"
 
 export const createProject = (project, history) => async dispatch => {
+
+	// Post request to the Spring API passing Axios
+	// Push to dashboard route if a valid object is passed
+	// If errors occur, pass the error object
 	try {
-		//post request to the Spring API passing a valid object
-		const res = axios.post("localhost:8080/api/project", project);
-
-		//Push to dashboard route if a valid object is passed
+		const res = await axios.post("http://localhost:8080/api/project", project);
 		history.push("/dashboard")
-
-		// If errors occur, pass the error object
 	} catch (err) {
 		dispatch({
 			type: GET_ERRORS,

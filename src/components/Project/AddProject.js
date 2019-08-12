@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux"
+import PropTypes from "prop-types";
+
 
 //Comps Import
 import { createProject } from "../../actions/projectActions";
@@ -39,7 +40,9 @@ class AddProject extends Component {
 			end_date: this.state.end_date
 		};
 
-		this.props.createProject(newProject, this.props.history)
+		this.props.createProject(newProject, this.props.history);
+
+		console.log(newProject)
 	}
 
 	render() {
@@ -52,6 +55,7 @@ class AddProject extends Component {
 								<legend className="uk-legend">Create A New Project</legend>
 
 								<div className="uk-margin">
+									Project Title
 									<input
 										className="uk-input"
 										type="text"
@@ -62,6 +66,7 @@ class AddProject extends Component {
 									/>
 								</div>
 								<div className="uk-margin">
+									Project ID
 									<input
 										className="uk-input"
 										type="text"
@@ -73,13 +78,7 @@ class AddProject extends Component {
 								</div>
 
 								<div className="uk-margin">
-									<select className="uk-select">
-										<option>Option 01</option>
-										<option>Option 02</option>
-									</select>
-								</div>
-
-								<div className="uk-margin">
+									Description
 									<textarea
 										className="uk-textarea"
 										rows="5"
@@ -135,5 +134,5 @@ AddProject.propTypes =  {
 // Export AddProject class
 export default connect(
 	null,
-	{ createProject })
-(AddProject);
+	{ createProject }
+	)(AddProject);
