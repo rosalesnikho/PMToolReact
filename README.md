@@ -1,5 +1,6 @@
 ## Project Management Tool | Front End
-This is the front-end of PMT using the following stack. The backend API can be found here: 
+This is the front-end of PMT using the following stack. The backend API can be found here: https://github.com/rosalesnikho/PMToolJava
+
 
 - React JS
 - Redux
