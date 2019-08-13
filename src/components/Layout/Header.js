@@ -20,9 +20,9 @@ class Header extends Component {
 									<a href="#">Parent</a>
 									<div className="uk-navbar-dropdown">
 										<ul className="uk-nav uk-navbar-dropdown-nav">
-											<li className="uk-active"><a href="#">Active</a></li>
-											<li><a href="#">Item</a></li>
-											<li><a href="#">Item</a></li>
+											<li className="uk-active"><NavLink to="#">Active</NavLink></li>
+											<li><NavLink to="#">Item</NavLink></li>
+											<li><NavLink to="#">Item</NavLink></li>
 										</ul>
 									</div>
 								</li>

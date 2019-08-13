@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 
 class ProjectItem extends Component {
 	render() {
+		const { project } = this.props;
 		return (
 			<div>
-				<p className="uk-text-lead">Project Item</p>
-				<p>Project Info</p>
+				<p className="uk-text-small">{project.projectName}</p>
+				<p className="uk-text-small">{project.description}</p>
 				<ul className="uk-iconnav">
 					<li><a href="#" uk-icon="icon: plus"></a></li>
 					<li><a href="#" uk-icon="icon: file-edit"></a></li>

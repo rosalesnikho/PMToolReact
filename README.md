@@ -1,8 +1,15 @@
-Project In Progress
+## Project Management Tool | Front End
+This is the front-end of PMT using the following stack. The backend API can be found here: 
+
+- React JS
+- Redux
+- UI Kit 
+- Axios
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Instructions
 
 In the project directory, you can run:
 
