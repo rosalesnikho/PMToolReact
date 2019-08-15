@@ -1,80 +1,34 @@
-import React, {Component} from "react";
-import { connect } from "react-redux"
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
 import classnames from "classnames";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+// Comps Import
+import {getOneProject} from "../../actions/projectActions";
+import mapStateToProps from "react-redux/es/connect/mapStateToProps";
 
 
-//Comps Import
-import { createProject } from "../../actions/projectActions";
 
-class AddProject extends Component {
-
-	//Initial Comp State
-	constructor() {
-		super();
-		this.state = {
-			projectName: "",
-			projectIdentifier: "",
-			description: "",
-			start_date: "",
-			end_date: "",
-			errors: {}
-		};
-
-		this.onChange = this.onChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
-	}
-
-	// Life Cycle Hook
-	// Receive errors from state in case errors are made
-	componentWillReceiveProps(nextProps, nextContext) {
-		if(nextProps.errors) {
-			this.setState(
-				{errors : nextProps.errors}
-				)
-		}
-	}
-
-	// Allows input fields to be used again, after we set the state from the constructor
-	// Instead of targeting individual forms, use 'e.target.name' to target fields agnostically
-	onChange(e) {
-		this.setState({[e.target.name]: e.target.value })
-	}
-
-	// Submit form information
-	onSubmit(e) {
-		e.preventDefault();
-		const newProject = {
-			projectName: this.state.projectName,
-			projectIdentifier: this.state.projectIdentifier,
-			description: this.state.description,
-			start_date: this.state.start_date,
-			end_date: this.state.end_date
-		};
-
-		this.props.createProject(newProject, this.props.history);
-
-		console.log(newProject)
+class UpdateProject extends Component {
+	componentDidMount() {
+		const { id } = this.props.match.params;
+		this.props.getOneProject(id, this.props.history);
 	}
 
 	render() {
-
-		const { errors } = this.state;
-		console.log(errors.projectName);
-
-
 		return (
+			// Start of Form
 			<div className="uk-container">
 				<div className="uk-grid">
 					<div className="uk-width-1-2">
 						<form onSubmit={this.onSubmit}>
 							<fieldset className="uk-fieldset">
-								<legend className="uk-legend">Create A New Project</legend>
+								<legend className="uk-legend">Updated Project: {project.projectName}</legend>
 
 								<div className="uk-margin">
 									Project Name
 									<input
-										className={classnames("uk-input", {"uk-form-danger" : errors.projectName})}
+										className="disabled"
 										type="text"
 										name="projectName"
 										placeholder="Project Name"
@@ -134,33 +88,31 @@ class AddProject extends Component {
 
 							</fieldset>
 							<p uk-margin="true">
-								<button className="uk-button uk-button-default">Submit</button>
+								<button className="uk-button uk-button-default">Save Changes</button>
 							</p>
 						</form>
 					</div>
 					<div className="uk-width-1-2">
-					{/*	 Right side - Add Instructional Content Here */}
+						{/*	 Right side - Add Instructional Content Here */}
 					</div>
 				</div>
 			</div>
+
 		);
 	}
 }
 
-// Create Project Function is a required prop type
-AddProject.propTypes =  {
-	createProject : PropTypes.func.isRequired,
-	errors: PropTypes.object.isRequired
+UpdateProject.propTypes = {
+	getOneProject: PropTypes.func.isRequired,
+	project: PropTypes.object.isRequired
 };
 
-// Map error state to props by grabbing it from Redux State
-// Pass errors as an Object and pass it to the view as new props
-const mapStateToProp  =  state => ({
-	errors: state.errors
+const mapStateToProps  =  state => ({
+	project: state.project.project
 });
 
-// Export AddProject class
+
 export default connect(
-	mapStateToProp,
-	{ createProject }
-	)(AddProject);
+	null,
+	 {getOneProject }
+	 )(UpdateProject);
