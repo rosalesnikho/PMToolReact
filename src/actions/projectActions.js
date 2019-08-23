@@ -27,7 +27,7 @@ export const getProjects = () => async dispatch => {
 
 
 export const getOneProject = (id, history) => async dispatch => {
-	const res = await axios.get(`http://localhost:8080/api/project/${id}` )
+	const res = await axios.get(`http://localhost:8080/api/project/${id}` );
 	dispatch({
 		type: GET_ONEPROJECT,
 		payload: res.data

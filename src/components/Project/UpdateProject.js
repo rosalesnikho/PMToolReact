@@ -1,18 +1,56 @@
-import React, {Component} from 'react';
-import classnames from "classnames";
+import React, {Component} from "react";
+import { connect } from "react-redux"
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import classnames from "classnames";
 
 // Comps Import
-import {getOneProject} from "../../actions/projectActions";
-import mapStateToProps from "react-redux/es/connect/mapStateToProps";
-
+import { getOneProject, createProject } from "../../actions/projectActions";
 
 
 class UpdateProject extends Component {
+	// set state
+
+	constructor() {
+		super();
+
+		this.state = {
+			id: "",
+			projectName: "",
+			projectIdentifier: "",
+			description: "",
+			start_date: "",
+			end_date: ""
+		};
+		this.onChange = this.onChange.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps, nextContext) {
+		const {
+			id,
+			projectName,
+			projectIdentifier,
+			description,
+			start_date,
+			end_date
+		} = nextProps.project;
+
+		this.setState({
+			id,
+			projectName,
+			projectIdentifier,
+			description,
+			start_date,
+			end_date
+		})
+	}
+
 	componentDidMount() {
-		const { id } = this.props.match.params;
+		const {id} = this.props.match.params;
 		this.props.getOneProject(id, this.props.history);
+	}
+
+	onChange(e) {
+		this.setState({[e.target.name]:e.target.value})
 	}
 
 	render() {
@@ -23,7 +61,7 @@ class UpdateProject extends Component {
 					<div className="uk-width-1-2">
 						<form onSubmit={this.onSubmit}>
 							<fieldset className="uk-fieldset">
-								<legend className="uk-legend">Updated Project: {project.projectName}</legend>
+								<legend className="uk-legend">Updated Project: {this.state.projectName}</legend>
 
 								<div className="uk-margin">
 									Project Name
@@ -35,33 +73,33 @@ class UpdateProject extends Component {
 										value={this.state.projectName}
 										onChange={this.onChange}
 									/>
-									<span className="uk-text-danger uk-text-small">{errors.projectName}</span>
+									{/*<span className="uk-text-danger uk-text-small">{errors.projectName}</span>*/}
 								</div>
 
 								<div className="uk-margin">
 									Project ID
 									<input
-										className={classnames("uk-input", {"uk-form-danger" : errors.projectIdentifier})}
+										// className={classnames("uk-input", {"uk-form-danger": errors.projectIdentifier})}
 										type="text"
 										name="projectIdentifier"
 										placeholder="Unique Project ID and more than 4 characters"
 										value={this.state.projectIdentifier}
 										onChange={this.onChange}
 									/>
-									<span className="uk-text-danger uk-text-small">{errors.projectIdentifier}</span>
+									{/*<span className="uk-text-danger uk-text-small">{errors.projectIdentifier}</span>*/}
 								</div>
 
 								<div className="uk-margin">
 									Description
 									<textarea
-										className={classnames("uk-textarea", {"uk-form-danger" : errors.description})}
+										// className={classnames("uk-textarea", {"uk-form-danger": errors.description})}
 										rows="5"
 										name="description"
 										placeholder="Enter Project Details"
 										value={this.state.description}
 										onChange={this.onChange}
 									/>
-									<span className="uk-text-danger uk-text-small">{errors.description}</span>
+									{/*<span className="uk-text-danger uk-text-small">{errors.description}</span>*/}
 								</div>
 
 								<div className="uk-margin">
@@ -71,7 +109,6 @@ class UpdateProject extends Component {
 										type="date"
 										name="start_date"
 										value={this.state.start_date}
-										onChange={this.onChange}
 									/>
 								</div>
 
@@ -104,15 +141,17 @@ class UpdateProject extends Component {
 
 UpdateProject.propTypes = {
 	getOneProject: PropTypes.func.isRequired,
+	createProject: PropTypes.func.isRequired,
 	project: PropTypes.object.isRequired
 };
 
-const mapStateToProps  =  state => ({
+const mapStateToProps = state => ({
 	project: state.project.project
 });
 
 
+
 export default connect(
-	null,
-	 {getOneProject }
-	 )(UpdateProject);
+	mapStateToProps,
+	{getOneProject, createProject}
+)(UpdateProject);

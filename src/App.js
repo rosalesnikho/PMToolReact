@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 
 //UI Kit Styles and other styles
-import 'uikit/dist/css/uikit.css'
+import "uikit/dist/css/uikit.css"
 import "./App.css";
 
 
