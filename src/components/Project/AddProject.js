@@ -155,12 +155,12 @@ AddProject.propTypes =  {
 
 // Map error state to props by grabbing it from Redux State
 // Pass errors as an Object and pass it to the view as new props
-const mapStateToProp  =  state => ({
+const mapStateToProps  =  state => ({
 	errors: state.errors
 });
 
 // Export AddProject class
 export default connect(
-	mapStateToProp,
+	mapStateToProps,
 	{ createProject }
 	)(AddProject);

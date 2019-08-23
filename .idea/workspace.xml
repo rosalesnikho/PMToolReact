@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f3f8b76-e3bb-4b22-80fa-b4aa965ad1ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Project/UpdateProject.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/actions/projectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/projectActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/type.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Project/AddProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/AddProject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Project/CreateProjectButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/CreateProjectButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Project/ProjectItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/ProjectItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/projectReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/projectReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Project/UpdateProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Project/UpdateProject.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +35,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PMToolJava" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -82,7 +77,10 @@
       <workItem from="1565550640109" duration="8932000" />
       <workItem from="1565561237653" duration="29576000" />
       <workItem from="1565796390769" duration="5842000" />
-      <workItem from="1565874697867" duration="166000" />
+      <workItem from="1565874697867" duration="723000" />
+      <workItem from="1565875593819" duration="72000" />
+      <workItem from="1565875699412" duration="554000" />
+      <workItem from="1566529227284" duration="5205000" />
     </task>
     <servers />
   </component>
